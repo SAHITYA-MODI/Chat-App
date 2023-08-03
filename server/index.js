@@ -7,8 +7,15 @@ const messageRoute = require("./routes/messagesRoute");
 const socket = require("socket.io");
 const app = express();
 
-app.use(cors());
 app.use(express.json());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://scintillating-smakager-050c0e.netlify.app",
+    ],
+  })
+);
 
 app.use("/api/auth", userRoutes);
 app.use("/api/messages", messageRoute);
